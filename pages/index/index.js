@@ -1,3 +1,5 @@
+import request from '../../utils/request'
+
 // pages/index/index.js
 Page({
 
@@ -11,8 +13,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    let result = await request('/banner',{type: 2})
+    console.log(result);
+    
   },
 
   /**
