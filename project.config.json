@@ -15,7 +15,7 @@
 		"scopeDataCheck": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.17.3",
+	"libVersion": "2.0.4",
 	"appid": "wx0c916a0f6722657f",
 	"projectname": "wechat-NetEaseCloudMusic",
 	"debugOptions": {
