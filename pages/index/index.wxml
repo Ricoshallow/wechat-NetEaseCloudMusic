@@ -48,45 +48,17 @@
     <navHeader title="排行榜" nav="热歌风向标"></navHeader>
     <!-- 排行榜区域 -->
     <swiper class="rank" next-margin="50rpx" previous-margin="50rpx">
-      <swiper-item>
+      <swiper-item wx:for="{{rankList}}"  wx:for-item="rank" wx:key="name">
         <view class="swiperItem">
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
+          <view class="title">{{rank.name}} ></view>
+          <view class="musicItem" wx:for="{{rank.songInfo}}" wx:key="id">
+            <image src="{{item.al.picUrl}}"></image>
+            <text class="count">{{index+1}}.</text>
+            <text class="musicName">{{item.name}}</text>
           </view>
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
-          </view>
+         
         </view> 
       </swiper-item>
-      <swiper-item>
-        <view class="swiperItem">
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/logo.png"></image>
-            <text class="count">1</text>
-            <text class="musicName">会不会</text>
-          </view>
-        </view> 
-      </swiper-item>
-      
       
     </swiper>
   </view>

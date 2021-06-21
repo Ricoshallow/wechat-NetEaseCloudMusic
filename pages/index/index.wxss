@@ -94,6 +94,11 @@
   width: 96%;
   background-color: #fbfbfb;
 }
+
+.swiperItem .title {
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
 .musicItem {
   display: flex;
   
@@ -107,10 +112,17 @@
 }
 
 .musicItem .count {
-  margin-right: 50rpx;
+  margin-right: 20rpx;
 }
 
 .musicItem text {
+  font-size: 33rpx;
   line-height: 100rpx;
+   /* 单行文本溢出隐藏 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 400rpx;
 }
 
