@@ -37,4 +37,41 @@
       <text >直播</text>
     </view>
   </view>
+  <!-- 推荐歌曲区域 -->
+  <view class="recommendContainer">
+    <view class="header">
+      <text>推荐歌曲</text>
+      <text class="more">更多</text>
+    </view>
+    <!-- 内容区 -->
+    <scroll-view class="recommendScroll" scroll-x enable-flex>
+      <view class="scrollview" >
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称歌曲名称歌曲名称歌曲名称歌曲名称歌曲名称歌曲名称</text>
+        </view>
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称</text>
+        </view>
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称</text>
+        </view>
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称</text>
+        </view>
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称</text>
+        </view>
+        <view class="scollItem">
+          <image src="/static/images/logo.png" alt=""></image>
+          <text>歌曲名称</text>
+        </view>
+      </view>
+      
+    </scroll-view>
+  </view>
 </view>
