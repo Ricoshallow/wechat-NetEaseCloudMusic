@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerList: [],//轮播图数据
+    songSheetList: [],//歌单数据
+
 
   },
 
@@ -14,9 +17,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    let result = await request('/banner',{type: 2})
-    console.log(result);
+    //获取轮播图数据
+    let res_banner = await request('/banner',{type: 2})
     
+    // 获取歌单数据
+    let res_songSheet = await request('/personalized', {limit: 10})
+
+    this.setData({
+      bannerList: res_banner.banners,
+      songSheetList: res_songSheet.result
+    })
   },
 
   /**
