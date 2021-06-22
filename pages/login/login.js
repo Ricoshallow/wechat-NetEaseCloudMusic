@@ -57,14 +57,16 @@ Page({
     }
     //前端验证通过，开始进行后端验证
     let res_login = await request('/login/cellphone',{phone, password})
-    console.log(res_login);
+    // console.log(res_login);
     if (res_login.code === 200) {
       wx.showToast({
         title: '登录成功',
         // duration: 2000
       })
+      // 保存用户信息至localstorage
+      wx.setStorageSync( 'userInfo', JSON.stringify(res_login.profile))
       // 跳转至个人中心
-      wx.switchTab({
+      wx.reLaunch({
         url: '/pages/personal/personal',
       });
     }else if (res_login.code === 400) {
