@@ -1,4 +1,5 @@
 // pages/personal.js
+import request from '../../utils/request'
 let startY = 0
 let moveY =0
 let movedY =0
@@ -10,18 +11,25 @@ Page({
   data: {
     coverTransform: 'translateY(0)',
     coverTransition: '',
-    userInfo: {}
+    userInfo: {},
+    recentPlayList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     let userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo);
+    // console.log(userInfo);
     if (userInfo) {
       this.setData({
         userInfo: JSON.parse(userInfo)
+      })
+      // 获取用户近期播放列表
+      let res_playList = await request('/user/record',{uid:this.data.userInfo.userId,type:1})
+      console.log(res_playList);
+      this.setData({
+        recentPlayList: res_playList.weekData.slice(0,10)
       })
     }
   },
