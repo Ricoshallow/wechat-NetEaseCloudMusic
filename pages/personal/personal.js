@@ -44,7 +44,12 @@ Page({
       coverTransition: 'transform 1s linear'
     })
   },
-
+  // 跳转到登录页面
+  toLogin () {
+    wx.navigateTo({
+      url: '/pages/login/login',
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
