@@ -1,1 +1,40 @@
 /* pages/video/video.wxss */
+/* 头部区域样式 */
+.videoContainer .header {
+    padding: 20rpx;
+    display: flex;
+}
+.header .search {
+    border: 1rpx solid #eee;
+    /*flex-grow: 可拉伸 ; flex-shrink:可压缩 ; flex-basis: 自身宽度;*/
+    /*flex默认值  flex-grow: 0 ; flex-shrink:1 ; flex-basis: auto;*/
+    /*flex:1  flex-grow: 1 ; flex-shrink:1 ; flex-basis: 0%;*/
+    /*flex:auto  flex-grow: 1 ; flex-shrink:1 ; flex-basis: auto;*/
+    flex: 1;
+    margin: 0 10rpx;
+    font-size: 26rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color: #d43c33;
+}
+.header image {
+    height: 60rpx;
+    width: 60rpx;
+}
+
+/* 导航区域样式 */
+.container {
+    display: flex;
+    white-space: nowrap;
+}
+
+.navItem {
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.navItem .active {
+    border-bottom: 1rpx solid #d43c33;
+}
