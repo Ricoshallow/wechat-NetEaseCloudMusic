@@ -56,7 +56,7 @@ Page({
       return
     }
     //前端验证通过，开始进行后端验证
-    let res_login = await request('/login/cellphone',{phone, password})
+    let res_login = await request('/login/cellphone',{phone, password, isLogin: true})
     // console.log(res_login);
     if (res_login.code === 200) {
       wx.showToast({

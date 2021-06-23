@@ -1,25 +1,66 @@
 // pages/video/video.js
+import request from '../../utils/request'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    videoTagList: [],
+    videoList: [],
+    navId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getVideoTagList()
+  },
 
+  // 获取视频标签列表页
+  async getVideoTagList(){
+    let res_videoTagList = await request('/video/group/list')
+    // console.log(res_videoTagList);
+    this.setData({
+      videoTagList: res_videoTagList.data.slice(0,16),
+      navId: res_videoTagList.data[0].id
+    })
+    //拿到navid再进行视频标签下对应的视频数据的获取（解决异步请求下navid还没有传入值的情况）
+    this.getVideoList(this.data.navId)
+  },
+  // 
+  async getVideoList(id){
+    let res_videoList = await request('/video/group',{id})
+    // console.log(res_videoList);
+    // 关闭正在加载提示框
+    wx.hideLoading();
+    this.setData({
+      videoList: res_videoList.datas
+    })
+  },
+  // 切换导航栏
+  changeNav(evnet){
+    let navId = evnet.currentTarget.id//通过id向event传参的时候如果传的是number会自动转换成string
+    this.setData({
+      navId: navId*1,
+      // videoList: []
+    })
+    // 显示正在加载
+    wx.showLoading({
+      title: '正在加载',
+      mask: true,
+    });
+    //获取对应导航栏的视频列表
+    this.getVideoList(this.data.navId)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
