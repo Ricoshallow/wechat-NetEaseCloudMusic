@@ -15,10 +15,21 @@
     </view>
   </scroll-view>
   <!-- 视频区域 -->
-  <scroll-view scroll-y="{{true}}" >
+  <scroll-view scroll-y class="videoScorll" refresher-enabled bindrefresherrefresh="handleRefresh">
     <view class="videoItem" wx:for="{{videoList}}" wx:key="index">
-      <video src="{{item.data.urlInfo.url}}"></video>
-      
+      <video 
+      src="{{item.data.urlInfo.url}}" 
+      bindplay="handlePlay" 
+      autoplay
+      id="{{item.data.vid}}"
+      poster="{{item.data.coverUrl}}" 
+      class="common" 
+      wx:if="{{videoId === item.data.vid}}" 
+      object-fit="cover"
+      bindtimeupdate="handleTimeUpdate"
+      bindended="handleEnd"></video>
+      <!-- 性能优化 用Image图片代替video标签 -->
+      <image src="{{item.data.coverUrl}}" class="common"  id="{{item.data.vid}}" bindtap="handlePlay" wx:else> </image>
       <view class="content">{{item.data.title}}</view>
 
       <view class="footer">

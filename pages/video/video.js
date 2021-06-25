@@ -9,7 +9,9 @@ Page({
   data: {
     videoTagList: [],
     videoList: [],
-    navId: ''
+    navId: '',
+    videoId: '',
+    videoUpdateTime: []
   },
 
   /**
@@ -56,6 +58,58 @@ Page({
     this.getVideoList(this.data.navId)
   },
 
+  // 点击播放的回调
+  handlePlay(event){
+    let vid = event.currentTarget.id
+    //关闭上一个视频
+    // console.log(this.videoContext);
+    // this.vid !== vid && this.videoContext && this.videoContext.stop()
+    
+    //创建控制video标签的实例对象
+    // console.log(event.currentTarget.id);
+    // this.vid = vid
+    this.setData({
+      videoId: vid
+    })
+    this.videoContext = wx.createVideoContext(vid)
+    let {videoUpdateTime} = this.data
+    let videoItem = videoUpdateTime.find(item => item.vid === vid)
+    // console.log(videoItem);
+    if (videoItem) {
+      this.videoContext.seek(videoItem.currentTime)
+    }
+  },
+
+  // 监听播放进度的回调
+  handleTimeUpdate(event){
+    let videoTimeObj = {vid: event.currentTarget.id, currentTime: event.detail.currentTime}
+    let {videoUpdateTime} = this.data
+    let videoItem = videoUpdateTime.find(item => item.vid === videoTimeObj.vid)
+    //判断videoUpdateTime数组中是否有当前视频的播放记录
+    if (videoItem) {
+      videoItem.currentTime = videoTimeObj.currentTime
+    } else{
+      videoUpdateTime.push(videoTimeObj)
+    }
+    //更新数据
+    this.setData({
+      videoUpdateTime
+    })
+  },
+  //视频播放完成的回调
+  handleEnd(event){
+    //移除videoUpdateTime数组中播放完的对象
+    let {videoUpdateTime} = this.data
+    let index = videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id)
+    videoUpdateTime.splice(index,1)
+    this.setData({
+      videoUpdateTime
+    })
+  },
+  //srollview下拉刷新
+  handleRefresh(){
+    console.log('111');
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
